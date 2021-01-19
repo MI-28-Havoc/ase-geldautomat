@@ -15,7 +15,7 @@ public class GeldautomatTest {
 	@Ignore
 	public void testKarteIstNull() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestÃ¼cken(1000);
+		geldautomat.bestücken(1000);
 		geldautomat.einschieben(null);
 		fail("Expected IllegalArgumentException!");
 	}
@@ -23,7 +23,7 @@ public class GeldautomatTest {
 	@Test (expected = IllegalStateException.class)
 	public void testZweiteKarteEinschieben() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestÃ¼cken(1000);
+		geldautomat.bestücken(1000);
 		geldautomat.einschieben(new Karte("1111"));
 		geldautomat.einschieben(new Karte("2222"));
 	}
@@ -31,37 +31,37 @@ public class GeldautomatTest {
 	@Test
 	public void testFalschePin() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestÃ¼cken(1000);
+		geldautomat.bestücken(1000);
 		geldautomat.einschieben(new Karte("1111"));
 		geldautomat.eingeben("2222");
 		int summe = geldautomat.auszahlen(500);
-		assertEquals("Bei falscher PIN muss -1 zurÃ¼ckgegeben werden!", -1, summe);
+		assertEquals("Bei falscher PIN muss -1 zurückgegeben werden!", -1, summe);
 	}
 	
 	@Test
 	public void testAbhebungOhnePin() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestÃ¼cken(1000);
+		geldautomat.bestücken(1000);
 		geldautomat.einschieben(new Karte("1111"));
 		int summe = geldautomat.auszahlen(500);
-		assertEquals("Bei falscher PIN muss -1 zurÃ¼ckgegeben werden!", -1, summe);
+		assertEquals("Bei falscher PIN muss -1 zurückgegeben werden!", -1, summe);
 	}
 
 	@Test
-	public void testBestÃ¼ckung() {
+	public void testBestückung() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestÃ¼cken(100);
-		assertEquals("Bestand muss Ã¼bereinstimmen!", 100, geldautomat.fÃ¼llstand());
+		geldautomat.bestücken(100);
+		assertEquals("Bestand muss übereinstimmen!", 100, geldautomat.füllstand());
 	}
 	
 	@Test
 	public void testZuWenigGeldImAutomat() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestÃ¼cken(100);
+		geldautomat.bestücken(100);
 		geldautomat.einschieben(new Karte("1111"));
 		int summe = geldautomat.auszahlen(300);
-		assertEquals("Bei zu wenig Geld muss der Rest(100) zurÃ¼ckgegeben werden!", 100, summe);
-		assertEquals("Bargeld muss jetzt 0 sein!", 0, geldautomat.fÃ¼llstand());
+		assertEquals("Bei zu wenig Geld muss der Rest(100) zurückgegeben werden!", 100, summe);
+		assertEquals("Bargeld muss jetzt 0 sein!", 0, geldautomat.füllstand());
 	}
 	
 }

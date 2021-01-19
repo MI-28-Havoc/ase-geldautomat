@@ -7,9 +7,9 @@ public class Geldautomat {
 	private boolean pinKorrekt = false;
 	private int pinFalsch = 0;
 
-	public void bestÃ¼cken(int bargeld) {
+	public void bestücken(int bargeld) {
 		if (this.karte != null) {
-			throw new IllegalStateException("Automat darf nicht wÃ¤hrend einer Transaktion bestÃ¼ckt werden!");
+			throw new IllegalStateException("Automat darf nicht während einer Transaktion bestückt werden!");
 		}
 		this.bargeld += bargeld;
 	}
@@ -35,7 +35,7 @@ public class Geldautomat {
 		}
 
 		if (pin.length() != 4) {
-			throw new IllegalArgumentException("PIN muss vierstellig sein1");
+			throw new IllegalArgumentException("PIN muss vierstellig sein!");
 		}
 
 		if (karte != null) {
@@ -79,7 +79,7 @@ public class Geldautomat {
 				if (pinKorrekt) {
 					return "Maximalbetrag kann abgehoben werden";
 				} else {
-					return "Falsche PIN oder PIN nicht eingegeben - Abhebung nicht mÃ¶glich!";
+					return "Falsche PIN oder PIN nicht eingegeben - Abhebung nicht möglich!";
 				}
 			} else {
 				return "Alles OK - bitte Karte eingeben";
@@ -87,19 +87,19 @@ public class Geldautomat {
 		} else if (bargeld > 0) {
 			if (karte != null) {
 				if (pinKorrekt) {
-					return "Abhebung bis zu " + bargeld + " Geld ist mÃ¶glich";
+					return "Abhebung bis zu " + bargeld + " Geld ist möglich";
 				} else {
-					return "Falsche PIN oder PIN nicht eingegeben - Abhebung nicht mÃ¶glich!";
+					return "Falsche PIN oder PIN nicht eingegeben - Abhebung nicht möglich!";
 				}
 			} else {
-				return "Abhebung bis zu " + bargeld + " Geld ist mÃ¶glich - bitte Karte eingeben";
+				return "Abhebung bis zu " + bargeld + " Geld ist möglich - bitte Karte eingeben";
 			}
 		}
 		
-		return "Der Automat enthÃ¤lt " + fÃ¼llstand() + " Taler.";
+		return "Der Automat enthält " + füllstand() + " Taler.";
 	}
 	
-	public int fÃ¼llstand() {
+	public int füllstand() {
 		return bargeld;
 	}
 	
