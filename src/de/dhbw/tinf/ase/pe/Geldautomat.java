@@ -18,6 +18,7 @@ public class Geldautomat {
 		if (this.karte != null) {
 			throw new IllegalStateException("Es befindet sich bereits eine Karte im Automat!");
 		}
+		//TODO: Abfragen ob Automat grade leer. Falls ja, Karte wieder nauswerfen
 		this.karte = karte;
 	}
 
@@ -59,15 +60,26 @@ public class Geldautomat {
 					"Betrag muss zwischen 5 und 500 Geld liegen!");
 		}
 
-		if (bargeld < summe) {
+		/* Raus, verursachte Bug mit Auszahlung des kompletten Betrags ohne PIN, 
+		 * wenn man mehr auszahlen möchte als vorhanden war.
+		 * if (bargeld < summe) {
 			int ausbezahlt = bargeld;
 			bargeld = 0;
 			return ausbezahlt;
-		}
+		}*/
 
 		if (pinKorrekt) {
-			bargeld -= summe;
-			return summe;
+			int ausbezahlt = summe;
+			if (summe % 5 == 0) {
+				bargeld -= summe;
+				
+				if (bargeld < 0) {
+					//TODO: Der tatsächlich ausgezahlte Betrag muss auch modulo 5 prüfung unterzogen werden.
+					ausbezahlt = summe+bargeld;
+					bargeld = 0;
+				}
+				return ausbezahlt;
+			}
 		}
 
 		return -1;

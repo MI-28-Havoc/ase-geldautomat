@@ -96,7 +96,7 @@ public class Anwendung {
 		System.out.println("Die Karte ist jetzt im Automat");
 	}
 
-	private static String erzeugePin() {
+	static String erzeugePin() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 4; i++) {
 			double zufall = Math.random();
