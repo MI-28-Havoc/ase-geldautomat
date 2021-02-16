@@ -156,10 +156,28 @@ public class GeldautomatTest {
 	@Test (expected = IllegalArgumentException.class)
 	public void testAuszahlsbetragDurch5Teilbar() {
 		Geldautomat geldautomat = new Geldautomat();
-		geldautomat.bestücken(1000);
+		geldautomat.bestücken(10);
 		geldautomat.einschieben(new Karte("1111"));
 		geldautomat.eingeben("1111");
-		geldautomat.auszahlen(17);
+		geldautomat.auszahlen(6);
+	}
+	
+	@Test (expected = IllegalStateException.class)
+	public void testAuszahlenBestandWenigerAls5() {
+		Geldautomat geldautomat = new Geldautomat();
+		geldautomat.bestücken(3);
+		geldautomat.einschieben(new Karte("1111"));
+		geldautomat.eingeben("1111");
+		geldautomat.auszahlen(5);
+	}
+	
+	@Test
+	public void testTeilweiseAuszahlung() {
+		Geldautomat geldautomat = new Geldautomat();
+		geldautomat.bestücken(6);
+		geldautomat.einschieben(new Karte("1111"));
+		geldautomat.eingeben("1111");
+		assertEquals("Wenn der gewünschte Betrag nicht ausbezahlt werden kann, wird das größtmögliche Vielfache von 5 ausbezahlt!", 5, geldautomat.auszahlen(10));
 	}
 	
 	/*TODO: Unit Tests schrieben für Zustandsübergänge sobald State implementiert wurde*/

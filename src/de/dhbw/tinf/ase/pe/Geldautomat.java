@@ -57,7 +57,7 @@ public class Geldautomat {
 	public int auszahlen(int summe) {
 		if (summe < 5 || summe > 500) {
 			throw new IllegalArgumentException(
-					"Betrag muss zwischen 5 und 500 Geld liegen!");
+					"Betrag muss zwischen 5 und 500 Taler liegen!");
 		}
 
 		/* Raus, verursachte Bug mit Auszahlung des kompletten Betrags ohne PIN, 
@@ -69,20 +69,33 @@ public class Geldautomat {
 		}*/
 
 		if (pinKorrekt) {
-			int ausbezahlt = summe;
+			int ausbezahlt = 0;
 			if (summe % 5 == 0) {
-				bargeld -= summe;
 				
-				if (bargeld < 0) {
-					//TODO: Der tatsächlich ausgezahlte Betrag muss auch modulo 5 prüfung unterzogen werden.
-					ausbezahlt = summe+bargeld;
-					bargeld = 0;
+				//Wenn mehr verlangt als vorhanden...
+				if (bargeld-summe < 0) {
+					if (bargeld-5 < 0 ) {
+						throw new IllegalStateException("Es sind nicht genügend Taler im Automat vorhanden!");
+					}
+					while(bargeld-5 >= 0)
+					{
+						bargeld -= 5;
+						ausbezahlt += 5;
+					}				
+				}
+				else {
+					ausbezahlt = summe;
+					bargeld -= summe;
 				}
 				return ausbezahlt;
 			}
+			else {
+				throw new IllegalArgumentException(
+						"Betrag muss durch 5 Taler teilbar sein!");
+			}
 		}
 
-		return -1;
+		return -1; //Passiert wenn PIN nicht korrekt oder Betrag nicht durch 5 teilbar
 	}
 
 	public String info() {
@@ -99,12 +112,12 @@ public class Geldautomat {
 		} else if (bargeld > 0) {
 			if (karte != null) {
 				if (pinKorrekt) {
-					return "Abhebung bis zu " + bargeld + " Geld ist möglich";
+					return "Abhebung bis zu " + bargeld + " Taler ist möglich";
 				} else {
 					return "Falsche PIN oder PIN nicht eingegeben - Abhebung nicht möglich!";
 				}
 			} else {
-				return "Abhebung bis zu " + bargeld + " Geld ist möglich - bitte Karte eingeben";
+				return "Abhebung bis zu " + bargeld + " Taler ist möglich - bitte Karte eingeben";
 			}
 		}
 		
