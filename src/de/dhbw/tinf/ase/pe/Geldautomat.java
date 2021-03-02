@@ -2,16 +2,23 @@ package de.dhbw.tinf.ase.pe;
 
 public class Geldautomat {
 
+	/* in GeldautomatState export
 	private int bargeld = 0;
 	private Karte karte;
 	private boolean pinKorrekt = false;
-	private int pinFalsch = 0;
+	private int pinFalsch = 0;*/
+	GeldautomatState stateOfNoMoney = new StateOfNoMoney(this);
+	
+	GeldautomatState state = stateOfNoMoney;
 
 	public void bestücken(int bargeld) {
+		state.bestücken(bargeld);
+		/* rüber in StateOfNoMoney
 		if (this.karte != null) {
 			throw new IllegalStateException("Automat darf nicht während einer Transaktion bestückt werden!");
 		}
 		this.bargeld += bargeld;
+		*/
 	}
 	
 	public void einschieben(Karte karte) {
