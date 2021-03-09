@@ -37,11 +37,12 @@ public class StateOfCardInside extends GeldautomatState{
 				setPinFalsch(0);
 			} else {
 				setPinFalsch(getPinFalsch()+1);
-			}
-			
-			if (getPinFalsch() > 2) {
-				ausgeben();
-				throw new IllegalStateException("PIN zu oft falsch eingegeben!");
+				if (getPinFalsch() > 2) {
+					setPinFalsch(0);
+					ausgeben();
+					throw new IllegalStateException("PIN zu oft falsch eingegeben!");
+				}
+				throw new IllegalArgumentException("PIN muss vierstellig sein!");
 			}
 		}
 	}
@@ -53,9 +54,9 @@ public class StateOfCardInside extends GeldautomatState{
 
 	@Override
 	void ausgeben() {
-		//TODO: Ausgabe der Karte in dem State ok? -> Zustandsdiagramm => Falls ja, dann Statuswechsel
-		/*karte = null;
-		pinKorrekt = false;*/
+		setKarte(null); 
+		setPinKorrekt(false);
+		this.geldautomat.setState(this.geldautomat.getStateOfReady());
 	}
 
 	@Override
