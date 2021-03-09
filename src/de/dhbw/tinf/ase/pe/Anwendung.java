@@ -81,11 +81,12 @@ public class Anwendung {
 		try {
 			String pin = cin.readLine();
 			geldautomat.eingeben(pin);
-		} catch (IOException e) {
-			pinEingeben(geldautomat);
+			
 		} catch (IllegalStateException e) {
 			System.out.println(e.getMessage());
-		}
+		} catch (IllegalArgumentException | IOException e) {
+			pinEingeben(geldautomat);
+		} 
 	}
 
 	private static void karteEinschieben(Geldautomat geldautomat) {
