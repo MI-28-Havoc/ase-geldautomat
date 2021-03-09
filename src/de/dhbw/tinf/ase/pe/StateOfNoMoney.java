@@ -12,7 +12,8 @@ public class StateOfNoMoney extends GeldautomatState{
 		/*if (this.karte != null) {
 			throw new IllegalStateException("Automat darf nicht während einer Transaktion bestückt werden!");
 		}*/
-		this.bargeld += bargeld;
+		setBargeld(getBargeld() + bargeld);
+		this.geldautomat.setState(this.geldautomat.getStateOfReady());
 	}
 
 	@Override
@@ -26,8 +27,8 @@ public class StateOfNoMoney extends GeldautomatState{
 	}
 
 	@Override
-	void auszahlen(int summe) {
-		throw new IllegalStateException("Es ist kein Geld vorhanden!");
+	int auszahlen(int summe) {
+		return -1;
 	}
 
 	@Override
@@ -35,6 +36,9 @@ public class StateOfNoMoney extends GeldautomatState{
 		throw new IllegalStateException("Es befindet sich keine Karte im Automat!");
 	}
 
-	
+	@Override
+	String info() {
+		return "Der Automat enthält " + getBargeld() + " Taler. Um Fortzufahren den Automat bitte ausreichend bestücken!";
+	}
 	
 }

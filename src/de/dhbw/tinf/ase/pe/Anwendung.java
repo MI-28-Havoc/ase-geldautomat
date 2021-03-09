@@ -44,7 +44,7 @@ public class Anwendung {
 				geldautomat.ausgeben();
 				System.out.println("Deine Karte wurde wieder ausgeworfen");
 			} else if (aktion == 7) {
-				System.out.println("Der Automat enthält " + geldautomat.füllstand() + " Taler");
+				System.out.println("Der Automat enthält " + geldautomat.getBargeld() + " Taler");
 			} else if (aktion == 8) {
 				break;
 			}

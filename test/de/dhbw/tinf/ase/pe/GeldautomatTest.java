@@ -63,7 +63,7 @@ public class GeldautomatTest {
 	public void testBestückung() {
 		Geldautomat geldautomat = new Geldautomat();
 		geldautomat.bestücken(100);
-		assertEquals("Bestand muss übereinstimmen!", 100, geldautomat.füllstand());
+		assertEquals("Bestand muss übereinstimmen!", 100, geldautomat.getBargeld());
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class GeldautomatTest {
 		geldautomat.eingeben("1111");
 		int summe = geldautomat.auszahlen(300);
 		assertEquals("Bei zu wenig Geld muss der Rest(100) zurückgegeben werden!", 100, summe);
-		assertEquals("Bargeld muss jetzt 0 sein!", 0, geldautomat.füllstand());
+		assertEquals("Bargeld muss jetzt 0 sein!", 0, geldautomat.getBargeld());
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
