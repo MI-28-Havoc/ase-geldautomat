@@ -9,7 +9,7 @@ public class Anwendung {
 	private static BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws Exception {
-		Geldautomat geldautomat = new Geldautomat();
+		Geldautomat geldautomat = Geldautomat.getInstance();
 
 		System.out.println("Willkommen beim DHBW Geldautomat!");
 

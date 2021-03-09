@@ -1,11 +1,15 @@
 package de.dhbw.tinf.ase.pe;
 
 public class Geldautomat {
-
+	private static Geldautomat instance;
 	GeldautomatState stateOfNoMoney = new StateOfNoMoney(this);
 	GeldautomatState stateOfReady = new StateOfReady(this);
 	GeldautomatState stateOfCardInside = new StateOfCardInside(this);
 	GeldautomatState stateOfPinCorrect = new StateOfPinCorrect(this);
+	
+	private Geldautomat() {
+		
+	}
 	
 	public GeldautomatState getStateOfPinCorrect() {
 		return stateOfPinCorrect;
@@ -64,5 +68,12 @@ public class Geldautomat {
 	public GeldautomatState getStateOfCardInside() {
 		return stateOfCardInside;
 	}
-	
+
+	public static Geldautomat getInstance() {
+		if(instance == null) {
+			instance = new Geldautomat();
+		}
+		return instance;
+	}
+
 }
