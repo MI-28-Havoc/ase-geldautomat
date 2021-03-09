@@ -50,6 +50,9 @@ public class StateOfPinCorrect extends GeldautomatState{
 				}
 				if (getBargeld() < 5) {
 					this.geldautomat.setState(this.geldautomat.getStateOfNoMoney());
+					setKarte(null);
+					setPinKorrekt(false);
+					System.out.println("Die Karte wird nun wieder ausgegeben!");
 				}
 				return ausbezahlt;
 			}

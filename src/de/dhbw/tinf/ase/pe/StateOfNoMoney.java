@@ -9,16 +9,13 @@ public class StateOfNoMoney extends GeldautomatState{
 
 	@Override
 	public void bestücken(int bargeld) {
-		/*if (this.karte != null) {
-			throw new IllegalStateException("Automat darf nicht während einer Transaktion bestückt werden!");
-		}*/
 		setBargeld(getBargeld() + bargeld);
 		this.geldautomat.setState(this.geldautomat.getStateOfReady());
 	}
 
 	@Override
 	void einschieben(Karte karte) {
-		throw new IllegalStateException("Der Automat muss zuvor bestückt werden!");
+		throw new IllegalStateException("Der Automat muss zuvor bestückt werden! Die Karte wird wieder ausgegeben.");
 	}
 
 	@Override

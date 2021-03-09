@@ -42,7 +42,6 @@ public class Anwendung {
 				geldAuszahlen(geldautomat);
 			} else if (aktion == 6) {
 				geldautomat.ausgeben();
-				System.out.println("Deine Karte wurde wieder ausgeworfen");
 			} else if (aktion == 7) {
 				System.out.println("Der Automat enth‰lt " + geldautomat.getBargeld() + " Taler");
 			} else if (aktion == 8) {
@@ -71,7 +70,14 @@ public class Anwendung {
 			if (summe == abheben) {
 				System.out.println(input + " Taler ausgegeben - viel Spaﬂ damit");
 			}
+			else if(summe < abheben) {
+				System.out.println("Es konnten nur " + summe + " Taler ausgegeben werden - viel Spaﬂ damit");
+			}
 		} catch (IOException | NumberFormatException e) {
+			geldAuszahlen(geldautomat);
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 			geldAuszahlen(geldautomat);
 		}
 	}
@@ -93,8 +99,13 @@ public class Anwendung {
 		String pin = erzeugePin();
 		System.out.println("Die Pin f¸r deine Karte ist " + pin);
 		Karte karte = new Karte(pin);
-		geldautomat.einschieben(karte);
-		System.out.println("Die Karte ist jetzt im Automat");
+		try {
+			geldautomat.einschieben(karte);
+			System.out.println("Die Karte ist jetzt im Automat");
+		}
+		catch (IllegalStateException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	static String erzeugePin() {
@@ -118,6 +129,9 @@ public class Anwendung {
 			geldautomat.best¸cken(summe);
 		} catch (NumberFormatException | IOException e) {
 			geldautomatBest¸cken(geldautomat);
+		}
+		catch (IllegalStateException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
