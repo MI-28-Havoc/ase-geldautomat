@@ -42,7 +42,7 @@ public class StateOfCardInside extends GeldautomatState{
 					ausgeben();
 					throw new IllegalStateException("PIN zu oft falsch eingegeben!");
 				}
-				throw new IllegalArgumentException("PIN muss vierstellig sein!");
+				throw new IllegalArgumentException("Falsche PIN eingegeben!");
 			}
 		}
 	}

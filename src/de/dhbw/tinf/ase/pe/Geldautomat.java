@@ -11,6 +11,14 @@ public class Geldautomat {
 		
 	}
 	
+	public void resetAutomat() {
+		this.state = stateOfNoMoney;
+		this.state.setBargeld(0);
+		this.state.setKarte(null);
+		this.state.setPinFalsch(0);
+		this.state.setPinKorrekt(false);
+	}
+	
 	public GeldautomatState getStateOfPinCorrect() {
 		return stateOfPinCorrect;
 	}
