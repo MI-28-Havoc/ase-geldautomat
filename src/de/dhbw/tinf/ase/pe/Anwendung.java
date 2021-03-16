@@ -42,7 +42,6 @@ public class Anwendung {
 				geldAuszahlen(geldautomat);
 			} else if (aktion == 6) {
 				geldautomat.ausgeben();
-				System.out.println("Deine Karte wurde wieder ausgeworfen");
 			} else if (aktion == 7) {
 				System.out.println("Der Automat enthält " + geldautomat.getBargeld() + " Taler");
 			} else if (aktion == 8) {
@@ -124,6 +123,9 @@ public class Anwendung {
 			geldautomat.bestücken(summe);
 		} catch (NumberFormatException | IOException e) {
 			geldautomatBestücken(geldautomat);
+		}
+		catch (IllegalStateException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

@@ -35,6 +35,7 @@ public class Geldautomat {
 
 	public void ausgeben() {
 		state.ausgeben();
+		System.out.println("Deine Karte wurde wieder ausgeworfen");
 	}
 
 	public void eingeben(String pin) {
