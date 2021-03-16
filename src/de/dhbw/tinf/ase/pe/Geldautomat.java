@@ -83,5 +83,13 @@ public class Geldautomat {
 		}
 		return instance;
 	}
+	
+	public boolean hasCardInserted() {
+		return state.hasCardInserted();
+	}
+	
+	public boolean isBestueckt() {
+		return state.isBestueckt();
+	}
 
 }

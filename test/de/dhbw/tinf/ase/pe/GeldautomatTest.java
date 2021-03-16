@@ -182,26 +182,5 @@ public class GeldautomatTest {
 			}
 		}
 		assertTrue(geldautomat.getState() instanceof StateOfReady);
-	}
-	/*TODO: Unit Tests schrieben für Zustandsübergänge sobald State implementiert wurde*/
-	
-	/* TODO: Kann zur Überprüfung von Console.Output benutzt werden
-	@Before
-	public void setUp() {
-	    System.setOut(new PrintStream(outputStreamCaptor));
-	}
-	
-	@Test
-	public void kurzerTest() {
-		
-	        
-	    assertEquals("Hello Baeldung Readers!!", outputStreamCaptor.toString()
-	      .trim());
-	}
-	
-	@After
-	public void tearDown() {
-	    System.setOut(standardOut);
-	}
-	*/
+	}	
 }

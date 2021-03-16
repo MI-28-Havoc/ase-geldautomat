@@ -18,7 +18,7 @@ public class StateOfNoMoney extends GeldautomatState{
 
 	@Override
 	void einschieben(Karte karte) {
-		throw new IllegalStateException("Der Automat muss zuvor bestückt werden!");
+		throw new IllegalStateException("Der Automat muss zuvor bestückt werden! Die Karte wird wieder ausgeworfen!");
 	}
 
 	@Override

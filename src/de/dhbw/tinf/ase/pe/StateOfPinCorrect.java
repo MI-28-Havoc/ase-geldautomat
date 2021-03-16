@@ -35,6 +35,7 @@ public class StateOfPinCorrect extends GeldautomatState{
 				
 				//Wenn mehr verlangt als vorhanden...
 				if (getBargeld()-summe < 0) {
+					//Kontobestände kleiner 5 Taler können nicht ausbezahlt werden...
 					if (getBargeld()-5 < 0 ) {
 						throw new IllegalStateException("Es sind nicht genügend Taler im Automat vorhanden!");
 					}
@@ -43,6 +44,7 @@ public class StateOfPinCorrect extends GeldautomatState{
 						setBargeld(getBargeld() - 5);
 						ausbezahlt += 5;
 					}	
+					
 				}
 				else {
 					ausbezahlt = summe;

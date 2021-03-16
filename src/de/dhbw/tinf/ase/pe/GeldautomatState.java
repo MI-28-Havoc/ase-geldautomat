@@ -50,5 +50,11 @@ public abstract class GeldautomatState {
 		this.pinFalsch = pinFalsch;
 	};
 	
+	public boolean hasCardInserted() {
+		return (karte != null);
+	}
 	
+	public boolean isBestueckt() {
+		return (bargeld > 0);
+	}
 }

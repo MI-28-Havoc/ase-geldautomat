@@ -67,11 +67,15 @@ public class Anwendung {
 			if (summe == -1) {
 				System.out.println("Keine Karte oder falsche PIN - bitte noch einmal versuchen!");
 			}
-			
-			if (summe == abheben) {
-				System.out.println(input + " Taler ausgegeben - viel Spaß damit");
+			else {
+				System.out.println(summe + " Taler ausgegeben - viel Spaß damit");
 			}
-		} catch (IOException | NumberFormatException e) {
+		}
+		 catch (IOException | NumberFormatException e) {
+			geldAuszahlen(geldautomat);
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 			geldAuszahlen(geldautomat);
 		}
 	}
@@ -90,24 +94,26 @@ public class Anwendung {
 	}
 
 	private static void karteEinschieben(Geldautomat geldautomat) {
-		String pin = erzeugePin();
-		System.out.println("Die Pin für deine Karte ist " + pin);
-		Karte karte = new Karte(pin);
-		geldautomat.einschieben(karte);
-		System.out.println("Die Karte ist jetzt im Automat");
+		if (!geldautomat.hasCardInserted()) {
+			String pin = erzeugePin();
+			System.out.println("Die Pin für deine Karte ist " + pin);
+			Karte karte = new Karte(pin);
+			try {
+				geldautomat.einschieben(karte);
+				System.out.println("Die Karte ist jetzt im Automat");
+			} catch (IllegalStateException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		else {
+			System.out.println("Es befindet sich bereits eine Karte im Automat!");
+		}
 	}
 
 	static String erzeugePin() {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 4; i++) {
-			double zufall = Math.random();
-			double ziffer = zufall;
-			do {
-				ziffer *= 10;
-			} while (ziffer < 1.0);
-			sb.append((int) ziffer);
-		}
-		return sb.toString();
+		String tempPin = String.valueOf((int)((Math.random() * (9999 - 1)) + 1));
+		String zeroPad = "0000";
+		return zeroPad.substring(tempPin.length()) + tempPin;
 	}
 
 	private static void geldautomatBestücken(Geldautomat geldautomat) {
