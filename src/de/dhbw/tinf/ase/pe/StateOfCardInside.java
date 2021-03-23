@@ -33,8 +33,8 @@ public class StateOfCardInside extends GeldautomatState{
 		if (getKarte() != null) {
 			if (getKarte().istKorrekt(pin)) {
 				setPinKorrekt(true);
-				this.geldautomat.setState(this.geldautomat.getStateOfPinCorrect());
 				setPinFalsch(0);
+				this.geldautomat.setState(this.geldautomat.getStateOfPinCorrect());
 			} else {
 				setPinFalsch(getPinFalsch()+1);
 				if (getPinFalsch() > 2) {
