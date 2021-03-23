@@ -84,7 +84,7 @@ public class GeldautomatTest {
 				fortfahren = false;
 			}
 			
-			if (counter >= 1000) {
+			if (counter >= 1000) { 
 				break;
 			}
 			counter++;

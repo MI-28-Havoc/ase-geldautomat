@@ -32,7 +32,6 @@ public class Anwendung {
 
 			if (aktion == 1) {
 				System.out.println(geldautomat.info());
-				System.out.println(geldautomat.getState());
 			} else if (aktion == 2) {
 				geldautomatBestücken(geldautomat);
 			} else if (aktion == 3) {
@@ -48,13 +47,10 @@ public class Anwendung {
 			} else if (aktion == 8) {
 				break;
 			}
-
 		}
-
-		System.out.println("Danke dass du den DHBW Geldautomat benutzt hast :-)");
+		System.out.println("Danke dass du den DHBW Geldautomat benutzt hast :-)"); 
 
 		cin.close();
-
 	}
 
 	private static void geldAuszahlen(Geldautomat geldautomat) {
@@ -94,7 +90,7 @@ public class Anwendung {
 	}
 
 	private static void karteEinschieben(Geldautomat geldautomat) {
-		if (!geldautomat.hasCardInserted()) {
+		if (!geldautomat.istKarteEingeschoben()) {
 			String pin = erzeugePin();
 			System.out.println("Die Pin für deine Karte ist " + pin);
 			Karte karte = new Karte(pin);
@@ -150,7 +146,6 @@ public class Anwendung {
 		System.out.println("[6] - Karte entnehmen");
 		System.out.println("[7] - Füllstand anzeigen");
 		System.out.println("[8] - Programm beenden");
-
 	}
 
 }

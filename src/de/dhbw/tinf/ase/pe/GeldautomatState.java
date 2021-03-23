@@ -7,7 +7,6 @@ public abstract class GeldautomatState {
 	private int pinFalsch = 0;
 	
 	void bestücken(int bargeld) {
-		//throw new IllegalStateException("Automat darf nicht während einer Transaktion bestückt werden!");
 		//Gemäß Diagramm....
 		throw new IllegalStateException("Automat ist bereits bestückt");
 	}
@@ -48,9 +47,9 @@ public abstract class GeldautomatState {
 
 	public void setPinFalsch(int pinFalsch) {
 		this.pinFalsch = pinFalsch;
-	};
+	}
 	
-	public boolean hasCardInserted() {
+	public boolean istKarteEingeschoben() {
 		return (karte != null);
 	}
 	
