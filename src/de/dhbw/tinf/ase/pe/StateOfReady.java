@@ -14,9 +14,6 @@ public class StateOfReady extends GeldautomatState{
 
 	@Override
 	void einschieben(Karte karte) {
-//		if (this.karte != null) {
-//			throw new IllegalStateException("Es befindet sich bereits eine Karte im Automat!");
-//		}
 		setKarte(karte);
 		this.geldautomat.setState(this.geldautomat.getStateOfCardInside());
 	}

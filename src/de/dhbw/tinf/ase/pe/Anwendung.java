@@ -32,6 +32,7 @@ public class Anwendung {
 
 			if (aktion == 1) {
 				System.out.println(geldautomat.info());
+				System.out.println(geldautomat.getState());
 			} else if (aktion == 2) {
 				geldautomatBestücken(geldautomat);
 			} else if (aktion == 3) {
@@ -41,7 +42,7 @@ public class Anwendung {
 			} else if (aktion == 5) {
 				geldAuszahlen(geldautomat);
 			} else if (aktion == 6) {
-				geldautomat.ausgeben();
+				karteAuswerfen(geldautomat);
 			} else if (aktion == 7) {
 				System.out.println("Der Automat enthält " + geldautomat.getBargeld() + " Taler");
 			} else if (aktion == 8) {
@@ -109,6 +110,16 @@ public class Anwendung {
 		}
 	}
 
+	
+	private static void karteAuswerfen(Geldautomat geldautomat) {
+		try {
+			geldautomat.ausgeben();
+			System.out.println("Deine Karte wurde wieder ausgeworfen");
+		} catch (IllegalStateException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	static String erzeugePin() {
 		String tempPin = String.valueOf((int)((Math.random() * (9999 - 1)) + 1));
 		String zeroPad = "0000";

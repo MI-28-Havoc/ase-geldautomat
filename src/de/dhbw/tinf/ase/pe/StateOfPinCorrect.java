@@ -19,7 +19,7 @@ public class StateOfPinCorrect extends GeldautomatState{
 
 	@Override
 	void eingeben(String pin) {
-		
+		throw new IllegalStateException("Die PIN wurde bereits eingegeben!");
 	}
 
 	@Override
@@ -51,9 +51,9 @@ public class StateOfPinCorrect extends GeldautomatState{
 					setBargeld(getBargeld() - summe);
 				}
 				if (getBargeld() < 5) {
-					this.geldautomat.setState(this.geldautomat.getStateOfNoMoney());
 					setKarte(null);
 					setPinKorrekt(false);
+					this.geldautomat.setState(this.geldautomat.getStateOfNoMoney());
 					System.out.println("Die Karte wird nun wieder ausgegeben!");
 				}
 				return ausbezahlt;
